@@ -1,0 +1,43 @@
+<head>
+    <meta charset="utf-8">
+    <title>Flight Booking</title>
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel ="stylesheet" href="login.component.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="input-menu">
+    <nav>
+    <label class="logo">Airline Services</label>
+    <ul>
+        
+        
+    </ul>   
+    </nav>
+    </div>
+    <div fxLayoutAlign="center center" fxFlexFill class="main-div">
+<mat-card fxFlex="75">
+<mat-toolbar color="primary"> Login</mat-toolbar>
+<form fxLayoutAlign="stretch" fxLayout="coulmn" class="login-form">
+<mat-form-field>
+    <input matInput required type="email" [(ngModel)]="username" name="username" class="form-control" id="txtUsername" placeholder="Enter username...">
+   
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput required type="password" [(ngModel)]="password" name="password" class="form-control" id="txtPassword" placeholder="Enter password...">
+    
+</mat-form-field>
+<li><a style="position: absolute; left: 45%; bottom: 3%;" routerLink="/Register">Register</a></li>
+
+    <button mat-raised-button type="submit"  (click)="login()" class="submit">Login</button>
+
+
+</form>
+
+</mat-card>
+
+    </div>
+   
+    </div>
+    </body>

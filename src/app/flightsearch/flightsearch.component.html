@@ -1,0 +1,196 @@
+<head>
+  <meta charset="utf-8">
+  <title>Search Ticket</title>
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <link rel ="stylesheet" href="flightsearch.component.css">
+ 
+  //Latest compiled and minified CSS
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
+  //jQuery library
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdjns.cloudfare.com/ajax/libs/proper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="input-menu">
+  <nav>
+  <label class="logo">Ticket Booking</label>
+  <ul>
+    <li>  <a routerLink="/SearckBook">Search Ticket</a></li>
+    <li>  <a routerLink="/FlightSearch">Book Ticket</a></li>
+ 
+  <li><a routerLink="/Coupon" (click)="logoutClicked()">Logout</a></li>
+      
+  </ul>   
+  </nav>
+  </div>
+  <div class="container" style="position: absolute;right:700px; width: 40%;">
+    <form>
+      <label for="From">From Place</label>
+      <input type="text" [(ngModel)]="data.fromPlace" id="txtFrom" name="fromPlace" placeholder="From">
+  
+      <label for="To">To Place</label>
+      <input type="text"   [(ngModel)]="data.toPlace" id="to" name="toPlace" placeholder="toPlace">
+  
+      <div class="col-md-6">
+        <input type="radio" value="oneway" name="radio" [checked]="true"  (change)="radionButtonClicked($event)">One Way 
+    </div>
+    <div class="col-md-6">
+        <input type="radio" value="round" name="radio"  (change)="radionButtonClicked($event)">Round Trip 
+    </div>
+    <div class="form-group d-sm-flex margin">
+      <div class="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative">
+        <label for="From">Departure Date</label>
+        <input type="date" [(ngModel)]="data.departDate" name="departDate" required placeholder="Depart Date" class="form-control">
+          <div class="label" id="depart"></div>
+      </div>
+
+      <div
+          class="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
+          <label for="From">Return Date</label>
+          <input type="date" [(ngModel)]="data.returnDate" name="returnDate" [disabled]="isOneWay" required placeholder="Depart Date" class="form-control">
+          <!-- <div class="label" id="depart"></div>
+          <input type="date" [(ngModel)]="data.returnDate" name="returnDate" [disabled]="isOneWay"  required placeholder="Return Date" class="form-control"> -->
+          <div class="label" id="return"></div>
+      </div>
+  </div>
+    
+  
+      <input type="submit" (click)="searchFlights()" value="Search"> 
+    </form>
+    <div *ngIf="x;else bc" >
+
+    <div *ngIf="triptype=='round';else roundtable" style=" position: absolute; left: 100%; bottom: 50%; width: 120%;">
+    
+        <table id="Tickets" >
+          <a style="color: black;">Return Flight Details(Click Above link to book both ticktes)</a>
+      <tr>
+      <th *ngFor="let column of headers">
+      {{column}}
+      
+      </th>
+      
+       <tr *ngFor ="let row of rounddata">
+        <td >
+          {{ row.airlineID }}
+        
+        
+        </td>
+        
+      <td >
+         {{ row.airline_Name }} 
+       
+      
+      
+      </td>
+      <td >
+         {{ row.from_Place }} 
+       
+      
+      
+      </td>
+      <td >
+        {{row.to_Place}}
+      
+      
+      </td>
+      <td >
+       
+      
+        {{row.ticket_Cost|currency:'INR'}}
+      </td>
+      <td >
+        {{row.start_Date|date:'dd-MM-yyyy HH:mm'}}
+       
+      
+      
+      </td>
+      <td >
+        
+      
+    
+      </td>
+      </tr> 
+      
+      
+      
+        </table>
+  
+
+    </div>
+    <ng-template #roundtable>
+  
+  
+    </ng-template>
+  </div>
+  <ng-template #bc>
+  
+  
+  </ng-template>
+  <div *ngIf="x;else ab" style="position: absolute; left: 100%; bottom: 100%; width: 120%;">
+    <table id="Tickets">
+  <tr>
+  <th *ngFor="let column of headers">
+  {{column}}
+  
+  </th>
+  
+   <tr *ngFor ="let row of data">
+    <td >
+      {{ row.airlineID }}
+    
+    
+    </td>
+    
+  <td >
+     {{ row.airline_Name }} 
+   
+  
+  
+  </td>
+  <td >
+     {{ row.from_Place }} 
+   
+  
+  
+  </td>
+  <td >
+    {{row.to_Place}}
+  
+  
+  </td>
+  <td >
+   
+  
+    {{row.ticket_Cost|currency:'INR'}}
+  </td>
+  <td >
+    {{row.start_Date|date:'dd-MM-yyyy HH:mm'}}
+   
+   
+  
+  
+  </td>
+  <td >
+    <li> 
+       <a routerLink="/BookTicket/{{ row.airlineID }}/{{ row.from_Place }}/{{ row.to_Place }}/{{row.start_Date}}/{{row.ticket_Cost}}/{{triptype}}/{{row.airline_Name}}">Book Ticket</a></li>
+                    
+
+  </td>
+  </tr> 
+  
+  
+  
+    </table>
+  </div>
+  <ng-template #ab>
+  
+  
+  </ng-template>
+</div>
+ 
+  </div>
+  </body>

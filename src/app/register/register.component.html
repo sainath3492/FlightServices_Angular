@@ -1,0 +1,39 @@
+<head>
+    <meta charset="utf-8">
+    <title>Create Airline</title>
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel ="stylesheet" href="register.component.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="input-menu">
+    <nav>
+    <label class="logo">Register</label>
+    <ul>
+     
+      <li>  <a routerLink="/">Login</a></li>
+    </ul>   
+    </nav>
+    </div>
+    <div class="container">
+      <form>
+        <label for="UserID">User ID</label>
+      <input type="text" [(ngModel)]="data.UserID" id="UserID" name="UserID" placeholder="User ID">
+  
+      <label for="UserName">User Name</label>
+      <input type="text" [(ngModel)]="data.UserName" id="UserName" name="UserName" placeholder="User Name">
+  
+  
+      <label for="Email">Email Id</label>
+      <input type="text"  [(ngModel)]="data.Email" id="Email" name="Email" placeholder="Email">
+      <label for="Password">Password</label>
+      <input type="text"  [(ngModel)]="data.Password" id="Password" name="Password" placeholder="Password">
+  
+      <input type="submit" (click)="submit()" value="Register">
+      </form>
+    </div>
+   
+  
+   
+    </div>
+    </body>

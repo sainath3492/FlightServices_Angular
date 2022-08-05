@@ -1,0 +1,38 @@
+<head>
+    <meta charset="utf-8">
+    <title>Create Airline</title>
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel ="stylesheet" href="coupon-add.component.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="input-menu">
+    <nav>
+    <label class="logo">Create Coupon</label>
+    <ul>
+        <li>  <a routerLink="/Airlines">Manage Airline</a></li>
+    <li>  <a routerLink="/AirlineCreate">Create Airline</a></li>
+    <li><a routerLink="/Coupon">Create Coupon</a></li>
+    <li><a routerLink="/Coupon" (click)="logoutClicked()">Logout</a></li>
+        
+    </ul>   
+    </nav>
+    </div>
+    <div class="container">
+      <form>
+        <label for="CouponCode">Coupon Code</label>
+      <input type="text" [(ngModel)]="data.CouponCode" id="CouponCode" name="CouponCode" placeholder="Coupon Code">
+  
+     
+  
+      <label for="CouponAmount">Coupon Amount</label>
+      <input type="text"  [(ngModel)]="data.CouponAmount" id="CouponAmount" name="CouponAmount" placeholder="Coupon Amount">
+     
+      <input type="submit" (click)="submit()" value="Add">
+      </form>
+    </div>
+   
+  
+   
+    </div>
+    </body>

@@ -1,0 +1,135 @@
+<head>
+  <meta charset="utf-8">
+  <title>Add Inventory</title>
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <link rel ="stylesheet" href="ticket-details.component.css">
+  //Latest compiled and minified CSS
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
+  //jQuery library
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdjns.cloudfare.com/ajax/libs/proper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="input-menu">
+  <nav>
+  <label class="logo">Ticket Details</label>
+  <ul>
+    <li>  <a routerLink="/SearckBook">Search Ticket</a></li>
+      <li>  <a routerLink="/FlightSearch">Book Ticket</a></li>
+   
+    <li><a routerLink="/Coupon" (click)="logoutClicked()">Logout</a></li>
+      
+  </ul>   
+  </nav>
+  </div>
+  <div class="container" id ="htmlData">
+    
+    <form >
+      <div style="position: absolute; right:750px; width: 25%;" >
+      <label for="Name">Airline Name</label>
+    <input type="text"    id="Name"  name="Name" [disabled]="true" value="{{listdata[0].airline_Name}}" >
+
+    <label for="From">From</label>
+    <input type="text"   id="From" name="From" [disabled]="true" value="{{listdata[0].from_Place}}" >
+   
+
+    <label for="To">To</label>
+    <input type="text"   id="To" name="To" [disabled]="true" value="{{listdata[0].to_Place}}" >
+
+    <label for="JDate">Journey Date</label> 
+    <input type="text"   id="JDate" name="JDate" [disabled]="true" value="{{listdata[0].onward_JourneyDate|date:'dd-MM-yyyy HH:mm'}}" >
+  </div>
+  <div style="position: absolute; right:450px; width: 25%;"  >
+    <label for="Type">Trip Type</label>
+    <input type="text"   id="Type" name="Type" [disabled]="true" value="{{listdata[0].trip_Type}}" >
+
+    <label for="Email">Email</label>
+    <input type="text"   id="Email" name="Email" [disabled]="true" value="{{listdata[0].emailID}}" >
+    <label for="Email">PNR</label>
+    <input type="text"   id="PNR" name="PNR" [disabled]="true" value="{{listdata[0].pnr}}" >
+   
+   
+  </div>
+    </form>
+
+   
+    <div style="position: absolute; left: 60%; bottom: 90%;">
+      <a style="color: black; position: absolute; bottom: 50%;">Total&nbsp;Cost:{{listdata[0].total_Price|currency:'INR'}}</a>
+      <table id="Tickets">
+    <tr>
+    <th>
+   Name
+    
+    </th>
+    <th>
+      Age
+       
+       </th>
+       <th>
+          Gender
+           
+           </th>
+           
+           <th>
+              Seat No
+               
+               </th>
+               <th>
+                  Class
+                   
+                   </th>
+                   <th>
+                      Meal
+                       
+                       </th>
+                      
+    </tr>
+    <tr *ngFor="let item of PassengerData">
+        <td >
+
+{{item.name}}
+        </td>
+        <td >
+
+          {{item.age}}
+                    </td>
+                    <td >
+
+                      {{item.gender}}
+                                </td>
+                                <td >
+
+                                  {{item.seats}}
+                                            </td>
+                                            <td >
+
+                                              {{item.class}}
+                                                        </td>
+                                                        <td >
+
+                                                          {{item.meal}}
+                                                                    </td>
+                                                                   
+                                                                                                                                            
+
+
+    </tr>
+      </table>
+   
+  </div>
+  
+
+</div>
+
+<div class="col-md-4 text-right" style="position: absolute;bottom: 50%; width: 25%; right:450px;bottom: 100px; ">
+  <button class="btn btn-success btn-block" (click)="openPDF()">Download Ticket</button>
+</div>
+ 
+
+ 
+  </div>
+  </body>

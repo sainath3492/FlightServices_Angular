@@ -1,0 +1,117 @@
+<head>
+    <meta charset="utf-8">
+    <title>Search Ticket</title>
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel ="stylesheet" href="airline-list.component.css">
+    //Latest compiled and minified CSS
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       
+      //jQuery library
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://cdjns.cloudfare.com/ajax/libs/proper.js/1.14.7/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="input-menu">
+    <nav>
+    <label class="logo">Flight List</label>
+    <ul>
+      <li>  <a routerLink="/Airlines">Manage Airline</a></li>
+      <li>  <a routerLink="/AirlineCreate">Create Airline</a></li>
+      <li><a routerLink="/Coupon">Create Coupon</a></li>
+      <li><a routerLink="/Coupon" (click)="logoutClicked()">Logout</a></li>
+        
+    </ul>   
+    </nav>
+    </div>
+   
+     <div>
+      <table id="Tickets">
+        <th>
+            Ins No
+              
+              </th>
+  
+  <th>
+  From
+    
+    </th>
+    <th>
+     
+     To
+      </th>
+      <th>
+       
+       Departure Time
+        </th>
+        <th>
+       
+      Arrival Time
+          </th>
+          <th>
+       Ticket Cost
+          
+             </th>
+             <th>
+       Bussiness seats Left
+            
+               </th>
+               <th>
+            Non Bussiness seats Left
+                     
+                        </th>
+  <tr *ngFor ="let row of Flights">
+    <td >
+     
+        {{row.instrument}}
+  
+    </td>
+    <td >
+     
+        {{row.from_Place}}
+  
+    </td>
+    <td >
+      {{row.to_Place}}
+  
+  
+    </td>
+    <td >
+     
+      {{row.start_Date|date:'dd-MM-yyyy HH:mm'}}
+  
+    </td>
+    <td >
+     
+  
+      {{row.start_Date|date:'dd-MM-yyyy HH:mm'}}
+    </td>
+    <td >
+     
+      {{row.ticket_Cost|currency:'INR'}}
+  
+    </td>
+   
+    <td >
+        {{row.business_Seats}}
+    
+    
+      </td>
+      <td >
+        {{row.non_Business_Seats}}
+    
+    
+      </td>
+    
+  </tr>
+  
+  
+  
+      </table>
+  </div> 
+  
+   
+    </div>
+    </body>

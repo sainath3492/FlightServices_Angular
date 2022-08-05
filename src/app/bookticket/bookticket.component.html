@@ -1,0 +1,190 @@
+<head>
+    <meta charset="utf-8">
+    <title>Add Inventory</title>
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel ="stylesheet" href="bookticket.component.css">
+    //Latest compiled and minified CSS
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     
+    //jQuery library
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdjns.cloudfare.com/ajax/libs/proper.js/1.14.7/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="input-menu">
+    <nav>
+    <label class="logo">Add Inventory</label>
+    <ul>
+      <li>  <a routerLink="/SearckBook">Search Ticket</a></li>
+      <li>  <a routerLink="/FlightSearch">Book Ticket</a></li>
+   
+    <li><a routerLink="/Coupon" (click)="logoutClicked()">Logout</a></li>
+        
+    </ul>   
+    </nav>
+    </div>
+    <div class="container">
+      <form [formGroup] ="Ticketform">
+        <div style="position: absolute; right:950px; width: 25%;" >
+        <label for="Name">Passenger Name</label>
+      <input type="text" formControlName="Name"    id="Name"  name="Name" placeholder="Name">
+  
+      <label for="Age">Age</label>
+      <input type="text" formControlName="Age"  id="Age" name="Age" placeholder="Age">
+     
+  
+      <label for="Gender">  Gender </label>
+      <select  formControlName="Gender" id="Gender" name="Gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female </option>
+        <option value="Others">Others</option>
+      </select>
+  
+      <label for="Row">  Row No </label>
+      <select  formControlName="Row" id="Row" name="Row">
+        <option value="1">1</option>
+        <option value="2">2 </option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+      </select>
+  
+      <label for="Seat">  Seat No </label>
+      <select  id="Seat" formControlName="Seat" name="Seat">
+        <option value="A">A</option>
+        <option value="B">B </option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+      </select>
+    </div>
+    <div style="position: absolute; right:550px; width: 25%;"  >
+        <label for="Class">  Class </label>
+        <select  id="Class" formControlName="Class" (click)="Classchange($event)" name="Class">
+          <option value="Business">Business</option>
+          <option value="NonBusiness">Non Business </option>
+        
+        </select>
+  
+        <label for="Meal">  Meal </label>
+        <select  id="Meal" formControlName="Meal" name="Meal">
+          <option value="Veg">Veg</option>
+          <option value="NonVeg">Non Veg </option>
+        
+        </select>
+
+      
+      <input type="submit" (click)="Additem()" value="Add Passenger">
+     
+    </div>
+      </form>
+<form style="position: absolute; top:55%; left:25%; width:25%;">
+   
+    <input type="text"   [(ngModel)]="data.Email" id="to" name="Email" placeholder="Email">
+    <div *ngIf="triptype=='round';else ab">
+      <input type="submit" (click)="submit()" value="Book Onward Ticket">
+      <input type="submit" (click)="submitReturn()" value="Book Return Ticket">
+
+    </div>
+    <ng-template #ab>
+      <input type="submit" (click)="submit()" value="Book Onward Ticket">
+      
+  
+    </ng-template>
+  
+</form>
+
+<form style="position: absolute; bottom: 90%; left:75%;">
+   
+  <input type="text"   style="width: 50%; right:20px;" [(ngModel)]="data.Coupon" id="Coupon" name="Coupon" placeholder="Coupon">
+  <input type="submit"  style="width: 50%; right:20px;"(click)="Applycoupon()" value="Apply Coupon">
+</form>
+
+      <div style="position: absolute; left: 60%; bottom: 90%;"> 
+        <a style="color: black; position: absolute; bottom: 50%;">Total&nbsp;Cost:{{TotalCost|currency:'INR'}}</a>
+        <table id="Tickets">
+      <tr>
+      <th>
+     Name
+      
+      </th>
+      <th>
+        Age
+         
+         </th>
+         <th>
+            Gender
+             
+             </th>
+             <th>
+                Row No
+                 
+                 </th>
+             <th>
+                Seat No
+                 
+                 </th>
+                 <th>
+                    Class
+                     
+                     </th>
+                     <th>
+                        Meal
+                         
+                         </th>
+                         <th>
+                           Remove
+                             
+                             </th>
+      </tr>
+      <tr *ngFor="let item of listdata">
+          <td >
+
+{{item.Name}}
+          </td>
+          <td >
+
+            {{item.Age}}
+                      </td>
+                      <td >
+
+                        {{item.Gender}}
+                                  </td>
+                                  <td >
+
+                                    {{item.Row}}
+                                              </td>
+                                              <td >
+
+                                                {{item.Seat}}
+                                                          </td>
+                                                          <td >
+
+                                                            {{item.Class}}
+                                                                      </td>
+                                                                      <td >
+
+                                                                        {{item.Meal}}
+                                                                                  </td>
+                                                                                  <td >
+
+                                                                                   <button type="button" class="btn btn-primay" (click)="remove(item)">Remove</button>
+                                                                                              </td>
+
+
+      </tr>
+        </table>
+     
+    </div>
+    </div>
+   
+  
+   
+    </div>
+    </body>

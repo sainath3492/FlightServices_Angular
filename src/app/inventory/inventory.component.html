@@ -1,0 +1,115 @@
+<head>
+  <meta charset="utf-8">
+  <title>Add Inventory</title>
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <link rel ="stylesheet" href="inventory.component.css">
+  //Latest compiled and minified CSS
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
+  //jQuery library
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdjns.cloudfare.com/ajax/libs/proper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="input-menu">
+  <nav>
+  <label class="logo">Add Inventory</label>
+  <ul>
+    <li>  <a routerLink="/Airlines">Manage Airline</a></li>
+    <li>  <a routerLink="/AirlineCreate">Create Airline</a></li>
+    <li><a routerLink="/Coupon">Create Coupon</a></li>
+    <li><a  (click)="logoutClicked()">Logout</a></li>
+      
+  </ul>   
+  </nav>
+  </div>
+  <div class="container">
+    <form>
+      <div style="position: absolute; right:600px;" >
+      <label for="From">From</label>
+    <input type="text" [(ngModel)]="data.From" id="From" name="From" placeholder="From">
+
+    <label for="To">To</label>
+    <input type="text"  [(ngModel)]="data.To" id="To" name="To" placeholder="To">
+    <div class="form-group d-sm-flex margin">
+      <div class="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative">
+        <label for="From">Departure Date</label>
+        <input type="date" [(ngModel)]="data.departDate" name="departDate" required placeholder="Depart Date" class="form-control">
+          <div class="label" id="depart"></div>
+      </div>
+
+      <div
+          class="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
+          <label for="From">Return Date</label>
+          <input type="date" [(ngModel)]="data.returnDate" name="returnDate"  required placeholder="Return Date" class="form-control">
+          <div class="label" id="return"></div>
+      </div>
+  </div>
+    
+    <!-- <label for="Arrival">Departure Date:</label>
+    <mat-form-field appearance="fill" class="datepick">
+        
+        <input matInput [matDatepicker]="picker" [(ngModel)]="data.Departure" id="Departure" name="Departure" >
+      
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <label for="Arrival">Arrival Date:</label>
+      <mat-form-field appearance="fill" class="datepick">
+        
+        <input matInput [matDatepicker]="picker" [(ngModel)]="data.Arrival" id="Arrival" name="Arrival" >
+      
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>  -->
+  
+    
+
+    <label for="Instrument">  Instrument </label>
+    <input type="text" [(ngModel)]="data.Instrument" id="Instrument" name="Instrument" placeholder="Instrument No">
+
+    <label for="Days">  Scheduled Days: </label>
+    <input type="text" [(ngModel)]="data.Days" id="Days" name="Days" placeholder="Scheduled Days">
+
+    <label for="BusinessSeats"> No of Business Seats</label>
+    <input type="text"  [(ngModel)]="data.BusinessSeats" id="BusinessSeats" name="BusinessSeats" placeholder="BusinessSeats">
+  </div>
+  <div style="position: absolute; left:600px;"  >
+    <label for="NonBusinessSeats"> No of Non-Business Seats:</label>
+    <input type="text" [(ngModel)]="data.NonBusinessSeats" id="NonBusinessSeats" name="NonBusinessSeats" placeholder="NonBusinessSeats">
+
+    <label for="Cost">Cost</label>
+    <input type="text"  [(ngModel)]="data.Cost" id="Cost" name="Cost" placeholder="Cost">
+
+    <label for="Rows">Rows</label>
+    <input type="text" [(ngModel)]="data.Rows" id="Rows" name="Rows" placeholder="Rows">
+
+   
+    
+
+
+    <label for="Meal">Meal</label>
+    <select [(ngModel)]="data.Meal" id="Meal" name="Meal">
+      <option value="Veg">Veg</option>
+      <option value="Non Veg">Non Veg </option>
+      <option value="Both">Both</option>
+    </select>
+
+    <label for="Triptype">Trip Type</label>
+    <select [(ngModel)]="data.Triptype" id="Triptype" name="Triptype">
+      <option value="OneWay">OneWay</option>
+      <option value="Round">Round</option>
+    </select>
+    
+    <input type="submit" (click)="submit()" value="Add">
+  </div>
+    </form>
+  </div>
+ 
+
+ 
+  </div>
+  </body>

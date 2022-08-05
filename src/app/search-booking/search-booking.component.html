@@ -1,0 +1,117 @@
+<head>
+    <meta charset="utf-8">
+    <title>Search Ticket</title>
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link rel ="stylesheet" href="search-booking.component.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="input-menu">
+    <nav>
+    <label class="logo">Search Ticket</label>
+    <ul>
+      <li>  <a routerLink="/SearckBook">Search Ticket</a></li>
+      <li>  <a routerLink="/FlightSearch">Book Ticket</a></li>
+   
+    <li><a routerLink="/Coupon" (click)="logoutClicked()">Logout</a></li>
+        
+    </ul>   
+    </nav>
+    </div>
+    <div class="container">
+      <form>
+        <label for="PNR">PNR</label>
+        <input type="text" [(ngModel)]="data.PNR" id="PNR" name="PNR" placeholder="PNR">
+    
+       
+    
+        <label for="Email">Email</label>
+        <input type="text"  [(ngModel)]="data.Email" id="Email" name="Email" placeholder="Email">
+      
+    
+         <input type="submit" (click)="GetBookingsByPNR()" value="Search By PNR">
+         <input type="submit" (click)="GetBookingsByEmail()" value="Search By Email"> 
+      </form>
+    </div>
+     <div *ngIf="x;else ab">
+      <table id="Tickets">
+  <tr>
+  <th *ngFor="let column of headers">
+  {{column}}
+  
+  </th>
+  <th>
+    Click View to see Details
+    
+    </th>
+    <th>
+      Click Below to Cancel Ticket
+      
+      </th>
+  <tr *ngFor ="let row of data">
+  
+    <td >
+      {{row.pnr}}
+  
+  
+    </td>
+    <td >
+      {{row.from_Place}}
+  
+  
+    </td>
+    <td >
+      {{row.to_Place}}
+  
+  
+    </td>
+    <td >
+      
+       {{row.onward_JourneyDate|date:'dd-MM-yyyy HH:mm'}}
+  
+    </td>
+    <td >
+     
+      {{row.total_Price|currency:'INR'}}
+  
+    </td>
+    <td >
+      {{row.status}}
+  
+  
+    </td>
+    <td *ngIf="row.status == 'Active';else View" >
+      <a routerLink="/TicketDetails/{{row.pnr}}">View</a>
+  
+  
+    </td>
+    <ng-template #View>
+      <td>
+       
+      </td>
+    </ng-template>
+   
+    <td *ngIf="row.status == 'Active';else Cancelled" >
+      <span  class="Block" style="color: red;" (click)="CancelTicket(row.pK_BookingID,row.status)">Cancel</span>
+  
+  
+    </td>
+    <ng-template #Cancelled>
+      <td>
+       
+      </td>
+    </ng-template>
+   
+  </tr>
+  
+  
+  
+      </table>
+  </div> 
+   <ng-template #ab>
+  
+    
+  </ng-template> 
+   
+    </div>
+    </body>

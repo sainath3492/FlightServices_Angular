@@ -1,0 +1,134 @@
+<head>
+  <meta charset="utf-8">
+  <title>Search Ticket</title>
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <link rel ="stylesheet" href="airlines.component.css">
+  //Latest compiled and minified CSS
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     
+    //jQuery library
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdjns.cloudfare.com/ajax/libs/proper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="input-menu">
+  <nav>
+  <label class="logo">Manage Airlines</label>
+  <ul>
+    <li>  <a routerLink="/Airlines">Manage Airline</a></li>
+    <li>  <a routerLink="/AirlineCreate">Create Airline</a></li>
+    <li><a routerLink="/Coupon">Create Coupon</a></li>
+    <li><a routerLink="/Coupon" (click)="logoutClicked()">Logout</a></li>
+    
+      
+  </ul>   
+  </nav>
+  </div>
+ 
+   <div>
+ 
+    <table id="Tickets">
+
+<!-- <th >
+ Logo
+
+</th> -->
+<th>
+ Airline Name
+  
+  </th>
+  <th>
+   
+    Contact Address
+    </th>
+    <th>
+     
+      Contact Number
+      </th>
+      <th>
+     
+       Status
+        </th>
+        <th>
+     
+        
+           </th>
+           <th>
+     
+          
+             </th>
+             <th>
+     
+          
+            </th>
+<tr *ngFor ="let row of airlines">
+
+  <!-- <td >
+   
+    
+
+  </td> -->
+  <td >
+    {{row.airlineName}}
+
+
+  </td>
+  <td >
+    {{row.contact_Address}}
+
+
+  </td>
+  <td >
+    {{row.contact_Number}}
+
+
+  </td>
+  <td >
+    {{row.status}}
+
+
+  </td>
+ 
+ 
+  <td *ngIf="row.status == 'Active';else list" >
+    
+    <a routerLink="/FlightList/{{ row.airlineID }}"  >View Flights</a>
+
+  </td>
+  <ng-template #list>
+    <td></td>
+  
+  </ng-template>
+
+  <td *ngIf="row.status == 'Active';else Inv" >
+    
+    <a routerLink="/Inventory/{{ row.airlineID }}/{{row.airlineName}}"  >Add Schedule</a>
+
+  </td>
+  <ng-template #Inv>
+    <td></td>
+  
+  </ng-template>
+  <td *ngIf="row.status == 'Active';else blocked" >
+    <span  class="Block" (click)="blockAirline(row.airlineID,'Blocked')">Block</span>
+
+
+  </td>
+  <ng-template #blocked>
+    <td>
+      <span  class="UnBlock" (click)="blockAirline(row.airlineID,'Active')">UnBlock</span>
+    </td>
+  </ng-template>
+</tr>
+
+
+
+    </table>
+</div> 
+
+ 
+  </div>
+  </body>
